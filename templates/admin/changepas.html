@@ -1,0 +1,47 @@
+{% extends "admin/admin_index.html" %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+    <style>
+        table:hover{
+            box-shadow: black 0 0 40px;
+            transition-delay: 6ms;
+            transition-duration: 0.3s;
+        }
+        table{
+            border-radius: 15px;
+        }
+
+    </style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/changepswd_post">
+  <table width="20%" border="0" class="table table-dark  table-borderless w-50 offset-3">
+      {% csrf_token %}
+    <tr>
+      <th scope="row">Old password</th>
+      <td>
+      <input type="text" name="textfield" id="textfield" class="form-control" required /></td>
+    </tr>
+    <tr>
+      <th scope="row">New password</th>
+      <td>
+      <input type="password" name="textfield2" id="textfield2"  class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th scope="row">Retype password</th>
+      <td>
+      <input type="password" name="textfield3" id="textfield3"  class="form-control" required/></td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2" scope="row"><input type="submit" name="button" id="button" value="Submit" class="btn btn-success" /></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}

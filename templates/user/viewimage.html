@@ -1,0 +1,125 @@
+{#{% extends "user/user_index.html" %}#}
+{#{% block body %}#}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#    <style>#}
+{#        table:hover{#}
+{#            box-shadow: black 0 0 40px;#}
+{#            transition-delay: 6ms;#}
+{#            transition-duration: 0.3s;#}
+{#        }#}
+{#        table{#}
+{#            border-radius: 15px;#}
+{#        }#}
+{##}
+{#    </style>#}
+{#</head>#}
+{##}
+{#<body><form action="" method="get"><table width="20%" border="0" class="table table-dark  table-borderless w-50 offset-3">#}
+{#  <tr>#}
+{#    <th scope="col">ID</th>#}
+{#    <th scope="col">Image</th>#}
+{#    <th scope="col">Date</th>#}
+{#     <th scope="col">Price</th>#}
+{#    <th scope="col">Edit</th>#}
+{#    <th scope="col">Delete</th>#}
+{#  </tr>#}
+{#    {% for i in data %}#}
+{#  <tr>#}
+{#    <td>{{ forloop.counter }}</td>#}
+{#      {%  if i.type == "image" %}#}
+{#    <td><a href="{{ i.image }}"> <img src="{{ i.image }}" width="100" height="100"/></a>#}
+{#        </td>#}
+{#      {% else %}#}
+{#      <td><video width="320" height="240" controls>#}
+{#  <source src="{{ i.image }}" type="video/mp4">#}
+{##}
+{#</video></td>#}
+{#      {% endif %}#}
+{#    <td>&nbsp;{{ i.date }}</td>#}
+{##}
+{#      <td>&nbsp;{{ i.price }}</td>#}
+{#    <td><a href="/updateimage/{{ i.id }}" class="btn btn-success">Edit</a></td>#}
+{#    <td><a href="/deleteimg/{{ i.id }}" class="btn btn-success" onclick="return confirm('Are you sure?')">Delete</a></td>#}
+{#  </tr>#}
+{#    {% endfor %}#}
+{#</table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+{#{% endblock %}#}
+
+
+{% extends "user/user_index.html" %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+    <style>
+
+        table:hover{
+            box-shadow: black 0 0 40px;
+            transition-delay: 6ms;
+            transition-duration: 0.3s;
+        }
+        table{
+            border-radius: 15px;
+        }
+        .video-container {
+    position: relative;
+}
+
+
+    </style>
+</head>
+
+<body><form action="" method="get"><table width="20%" border="0" class="table table-dark  table-borderless w-50 offset-3">
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">File</th>
+    <th scope="col">Date</th>
+     <th scope="col">Price</th>
+    <th scope="col">Edit Price</th>
+    <th scope="col">Delete Price</th>
+  </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+      <td>
+
+          {%  if i.ft == "image" %}
+
+              <a href="http://127.0.0.1:5000/down/{{ i.f }}"> <img src="http://127.0.0.1:5000/down/{{ i.f }}" width="100" height="100"/></a>
+              {% else %}
+
+          <div class="video-container">
+    <div class="overlay"></div>
+    <video controls  width="320" height="240"  controlsList="nodownload">
+        <source src="http://127.0.0.1:5000/down/{{ i.f }}" type="video/mp4">
+    </video>
+</div>
+
+
+          {% endif %}
+ </td>
+    <td>&nbsp;{{ i.d }}</td>
+
+      <td>&nbsp;{{ i.fp }}</td>
+    <td><a href="/updateimage/{{ i.bid }}#contact" class="btn btn-success">Edit</a></td>
+  {% if i.fp == "Update Amount" %}
+    <td><a class="btn btn-danger">Delete</a></td>
+  {% else %}
+    <td><a href="/deleteimg/{{ i.bid }}#contact" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a></td>
+  {% endif %}
+  </tr>
+    {% endfor %}
+</table>
+</form>
+</body>
+</html>
+{% endblock %}

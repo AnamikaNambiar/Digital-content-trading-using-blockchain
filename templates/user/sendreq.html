@@ -1,0 +1,68 @@
+{% extends "user/user_index.html" %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+    <style>
+        table:hover{
+            box-shadow: black 0 0 40px;
+            transition-delay: 6ms;
+            transition-duration: 0.3s;
+        }
+        table{
+            border-radius: 15px;
+        }
+
+    </style>
+</head>
+
+<body><form action="" method="get"><table width="20%" border="0" class="table table-dark  table-borderless w-50 offset-3">
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">User Info</th>
+    <th scope="col">Image</th>
+    <th scope="col">Date</th>
+     <th scope="col">Price</th>
+    <th scope="col">Send Request</th>
+  </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+  <td>{{ i.uid.username }}<br/>{{ i.uid.contacts }}</td>
+      {%  if i.ft == "image" %}
+    <td oncontextmenu="return false;"><a href="http://127.0.0.1:5000/down/{{ i.f }}"> <img src="http://127.0.0.1:5000/down/{{ i.f }}" width="100" height="100"/></a>
+        </td>
+      {% else %}
+      <td oncontextmenu="return false;"><video controls  width="320" height="240"  controlsList="nodownload">
+  <source src="http://127.0.0.1:5000/down/{{ i.f }}" type="video/mp4">
+
+</video></td>
+      {% endif %}
+    <td>&nbsp;{{ i.d }}</td>
+
+      <td>&nbsp;{{ i.fp }}</td>
+  {% if i.status == "1" %}
+      <td>Already requested</td>
+      {% elif i.status == "3" %}
+      <td>Please wait for update amount</td>
+  {% else %}
+    <td><a href="/sendimgreq/{{ i.bid }}" class="btn btn-success">Send</a></td>
+  {% endif %}
+  </tr>
+     {% endfor %}
+
+</table>
+</form>
+<script>
+    // JavaScript to disable right-click on the third column
+    document.querySelectorAll('td:nth-child(3)').forEach(function(cell) {
+        cell.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    });
+</script>
+</body>
+</html>
+{% endblock %}

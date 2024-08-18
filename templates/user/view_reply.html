@@ -1,0 +1,43 @@
+{% extends "user/user_index.html" %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+    <style>
+        table:hover{
+            box-shadow: black 0 0 40px;
+            transition-delay: 6ms;
+            transition-duration: 0.3s;
+        }
+        table{
+            border-radius: 15px;
+        }
+
+    </style>
+</head>
+
+<body><form action="" method="get">
+<table width="20%" border="0" class="table table-dark  table-borderless w-50 offset-3">
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Date</th>
+    <th scope="col">Complaint</th>
+    <th scope="col">Reply</th>
+    <th scope="col">R_date</th>
+  </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter  }}</td>
+    <td>{{ i.c_date }}</td>
+    <td>{{ i.complaint }}&nbsp;</td>
+    <td>{{ i.reply }}</td>
+    <td>{{ i.r_date }}</td>
+  </tr>
+    {% endfor %}
+</table>
+</form>
+</body>
+</html>
+{% endblock %}

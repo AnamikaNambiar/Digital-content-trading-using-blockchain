@@ -1,0 +1,12 @@
+import smtplib
+
+    s = smtplib.SMTP(host='smtp.gmail.com', port=587)
+    s.starttls()
+    s.login("smartfuddonation@gmail.com", "smart@789")
+    msg = MIMEMultipart()  # create a message.........."
+    msg['From'] = "smartfuddonation@gmail.com"
+    msg['To'] = id
+    msg['Subject'] = "Your Password for Smart Donation Website"
+    body = "Your Password is:- - " + str(pwd)
+    msg.attach(MIMEText(body, 'plain'))
+    s.send_message(msg)
